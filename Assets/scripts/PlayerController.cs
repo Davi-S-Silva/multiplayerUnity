@@ -81,32 +81,29 @@ public class PlayerController : MonoBehaviour
 
         if (_horizontalMove > 0)
         {
+            _animController.applyRootMotion = true;
             _animController.SetBool("TurnRight", true);
         }
         else
-        { 
+        {
+            _animController.applyRootMotion = true;
             _animController.SetBool("TurnLeft", true);
         }
-
-        if(_verticalMove == 0)
+        if (_verticalMove == 0)
         {
             _animController.SetBool("walk_with_briefcase", false);
             _animController.SetBool("WalkingBackwards", false);
             _animController.applyRootMotion = false;
         }
-        if (_horizontalMove == 0)
+
+
+        if (_horizontalMove != 0)
         {
-            _animController.SetBool("TurnRight", false);
-            _animController.SetBool("TurnLeft", false);
+            transform.Rotate(new Vector3(0,_rotateForce*_horizontalMove,0),Space.World);
+          /*  _animController.SetBool("TurnRight", false);
+            _animController.SetBool("TurnLeft", false);*/
+            // _animController.applyRootMotion = false;
         }
-
-
-        /*
-                if (_actionPlayerController.Move.Teclado.enabled)
-                {
-                    Debug.Log("new input system");
-                }*/
-
 
 
     }
