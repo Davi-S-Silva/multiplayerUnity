@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField]
-    private float _moveSpeed, _jumpForce, _rotateForce, _horizontalMove, _verticalMove;
+    private float _moveSpeed, _jumpForce, _rotateForce, _verticalMove, _horizontalMove;
 
     [SerializeField]
     private bool _isJump;
@@ -51,14 +51,18 @@ public class PlayerController : MonoBehaviour
         _horizontalMove = _actionPlayerController.Player.MoveHorizontal.ReadValue<float>();
         _verticalMove = _actionPlayerController.Player.MoveVertical.ReadValue<float>();
 
+
+
+        Debug.Log("Horizontal: " + _horizontalMove);
+        Debug.Log("Vertical: " + _verticalMove);
+
         /*_jumpForce = _jumpForce || _actionPlayerController.Player.Move.ReadValue<float>();*/
     }
 
     private void FixedUpdate()
     {
 
-        Debug.Log("Horizontal: "+_horizontalMove);
-        Debug.Log("Vertical: " + _verticalMove);
+        
 
         //_rb.AddForce(new Vector3(_horizontalMove * _moveSpeed, 0, _verticalMove * _moveSpeed), ForceMode.Force);
 
@@ -77,12 +81,10 @@ public class PlayerController : MonoBehaviour
 
         if (_horizontalMove > 0)
         {
-            _animController.applyRootMotion = true;
             _animController.SetBool("TurnRight", true);
         }
         else
-        {
-            _animController.applyRootMotion = true;
+        { 
             _animController.SetBool("TurnLeft", true);
         }
 
@@ -90,9 +92,12 @@ public class PlayerController : MonoBehaviour
         {
             _animController.SetBool("walk_with_briefcase", false);
             _animController.SetBool("WalkingBackwards", false);
+            _animController.applyRootMotion = false;
+        }
+        if (_horizontalMove == 0)
+        {
             _animController.SetBool("TurnRight", false);
             _animController.SetBool("TurnLeft", false);
-            _animController.applyRootMotion = false;
         }
 
 

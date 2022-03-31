@@ -39,17 +39,8 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                 {
                     ""name"": ""MoveHorizontal"",
                     ""type"": ""Value"",
-                    ""id"": ""4ddc5677-4cbc-4b22-a524-0d4f2cc9becc"",
+                    ""id"": ""e967ab64-4300-4961-86df-680e12d978bb"",
                     ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Jump"",
-                    ""type"": ""Value"",
-                    ""id"": ""cd64dfb4-73a4-4c02-8a02-01c593959d67"",
-                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -57,40 +48,7 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
             ],
             ""bindings"": [
                 {
-                    ""name"": ""ARROW_VERTICAL"",
-                    ""id"": ""33773f2e-99a7-4d0e-8aa6-99209f3b83ec"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveVertical"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""8625cc6f-0b32-429e-be34-0ea90495b6f6"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveVertical"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""78f5be74-106f-47b9-a56b-cfd1f6e7428e"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveVertical"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""WS"",
+                    ""name"": ""ws_teclado"",
                     ""id"": ""ee32bd41-297d-45e6-8fd0-fac2062e677a"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -123,19 +81,107 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""9333cf39-e030-4eda-993b-76ed00ee7e1f"",
-                    ""path"": """",
+                    ""name"": ""arrow_teclado"",
+                    ""id"": ""33773f2e-99a7-4d0e-8aa6-99209f3b83ec"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
+                    ""action"": ""MoveVertical"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""AD"",
-                    ""id"": ""be49b7c7-4a49-48eb-ad68-b4e4247f1219"",
+                    ""name"": ""positive"",
+                    ""id"": ""8625cc6f-0b32-429e-be34-0ea90495b6f6"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""78f5be74-106f-47b9-a56b-cfd1f6e7428e"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""arrow_joypad"",
+                    ""id"": ""3d116cc2-d5a9-4d80-a66b-70d9693860c3"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveVertical"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""e125287a-c955-43e3-b65b-dc0c93808f91"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""e63a7ac3-5b3c-428c-9d12-ee1d99604eb1"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""stick_joypad"",
+                    ""id"": ""ecf8c0ed-73e1-4b1e-a95c-e41beb603dd6"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveVertical"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""90712f6f-5cc1-4b8a-a877-142f4756c24c"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""27aa6365-8deb-4fa4-922d-2e3d61dcab8c"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""ad_teclado"",
+                    ""id"": ""4b8587ff-a024-4b03-a8e0-868b98060d5e"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -145,8 +191,8 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Positive"",
-                    ""id"": ""76922a69-d828-44b8-9eb6-3856e20e05b4"",
+                    ""name"": ""positive"",
+                    ""id"": ""633835a2-c139-47ca-8fbf-95592d08a3a6"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -156,42 +202,9 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Negative"",
-                    ""id"": ""9bfac277-d958-4e78-bf7c-8e2c3e28fb2e"",
+                    ""name"": ""negative"",
+                    ""id"": ""4a9344fb-8a9a-4247-9f88-8dc581695341"",
                     ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveHorizontal"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""ARROW_HORIZONTAL"",
-                    ""id"": ""0fab8d49-a0e1-4911-bc44-97002a2cef0d"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveHorizontal"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Positive"",
-                    ""id"": ""6ecd0915-b28b-475a-a2ec-690c0835ccba"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveHorizontal"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Negative"",
-                    ""id"": ""7ae8f674-9d7c-4248-919e-c2caf22807b8"",
-                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -208,7 +221,6 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_MoveVertical = m_Player.FindAction("MoveVertical", throwIfNotFound: true);
         m_Player_MoveHorizontal = m_Player.FindAction("MoveHorizontal", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -270,14 +282,12 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_MoveVertical;
     private readonly InputAction m_Player_MoveHorizontal;
-    private readonly InputAction m_Player_Jump;
     public struct PlayerActions
     {
         private @ActionsPlayerController m_Wrapper;
         public PlayerActions(@ActionsPlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveVertical => m_Wrapper.m_Player_MoveVertical;
         public InputAction @MoveHorizontal => m_Wrapper.m_Player_MoveHorizontal;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -293,9 +303,6 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                 @MoveHorizontal.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveHorizontal;
                 @MoveHorizontal.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveHorizontal;
                 @MoveHorizontal.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveHorizontal;
-                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -306,9 +313,6 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                 @MoveHorizontal.started += instance.OnMoveHorizontal;
                 @MoveHorizontal.performed += instance.OnMoveHorizontal;
                 @MoveHorizontal.canceled += instance.OnMoveHorizontal;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -317,6 +321,5 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
     {
         void OnMoveVertical(InputAction.CallbackContext context);
         void OnMoveHorizontal(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
     }
 }
