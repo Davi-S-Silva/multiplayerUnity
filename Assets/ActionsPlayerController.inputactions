@@ -33,18 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "run",
+                    "name": "ShiftLeft",
                     "type": "Button",
-                    "id": "8f48206a-6b9a-4691-bc51-0ceaa26dcffc",
+                    "id": "34c47d30-7128-4a3e-9fc5-6383f65fa066",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ShiftLeft",
+                    "name": "arma",
                     "type": "Button",
-                    "id": "34c47d30-7128-4a3e-9fc5-6383f65fa066",
+                    "id": "50e68039-9eef-4fe6-a819-9fffdb6bd59e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -346,6 +346,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ShiftLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9465975d-93b6-4f9b-b6eb-4d57df4104bb",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "arma",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

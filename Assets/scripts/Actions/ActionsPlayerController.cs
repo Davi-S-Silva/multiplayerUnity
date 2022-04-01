@@ -55,18 +55,18 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""run"",
+                    ""name"": ""ShiftLeft"",
                     ""type"": ""Button"",
-                    ""id"": ""8f48206a-6b9a-4691-bc51-0ceaa26dcffc"",
+                    ""id"": ""34c47d30-7128-4a3e-9fc5-6383f65fa066"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ShiftLeft"",
+                    ""name"": ""arma"",
                     ""type"": ""Button"",
-                    ""id"": ""34c47d30-7128-4a3e-9fc5-6383f65fa066"",
+                    ""id"": ""50e68039-9eef-4fe6-a819-9fffdb6bd59e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -370,6 +370,17 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                     ""action"": ""ShiftLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9465975d-93b6-4f9b-b6eb-4d57df4104bb"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""arma"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -404,8 +415,8 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
         m_Player_MoveVertical = m_Player.FindAction("MoveVertical", throwIfNotFound: true);
         m_Player_MoveHorizontal = m_Player.FindAction("MoveHorizontal", throwIfNotFound: true);
         m_Player_jump = m_Player.FindAction("jump", throwIfNotFound: true);
-        m_Player_run = m_Player.FindAction("run", throwIfNotFound: true);
         m_Player_ShiftLeft = m_Player.FindAction("ShiftLeft", throwIfNotFound: true);
+        m_Player_arma = m_Player.FindAction("arma", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -468,8 +479,8 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
     private readonly InputAction m_Player_MoveVertical;
     private readonly InputAction m_Player_MoveHorizontal;
     private readonly InputAction m_Player_jump;
-    private readonly InputAction m_Player_run;
     private readonly InputAction m_Player_ShiftLeft;
+    private readonly InputAction m_Player_arma;
     public struct PlayerActions
     {
         private @ActionsPlayerController m_Wrapper;
@@ -477,8 +488,8 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
         public InputAction @MoveVertical => m_Wrapper.m_Player_MoveVertical;
         public InputAction @MoveHorizontal => m_Wrapper.m_Player_MoveHorizontal;
         public InputAction @jump => m_Wrapper.m_Player_jump;
-        public InputAction @run => m_Wrapper.m_Player_run;
         public InputAction @ShiftLeft => m_Wrapper.m_Player_ShiftLeft;
+        public InputAction @arma => m_Wrapper.m_Player_arma;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -497,12 +508,12 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                 @jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @ShiftLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShiftLeft;
                 @ShiftLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShiftLeft;
                 @ShiftLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShiftLeft;
+                @arma.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnArma;
+                @arma.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnArma;
+                @arma.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnArma;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -516,12 +527,12 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                 @jump.started += instance.OnJump;
                 @jump.performed += instance.OnJump;
                 @jump.canceled += instance.OnJump;
-                @run.started += instance.OnRun;
-                @run.performed += instance.OnRun;
-                @run.canceled += instance.OnRun;
                 @ShiftLeft.started += instance.OnShiftLeft;
                 @ShiftLeft.performed += instance.OnShiftLeft;
                 @ShiftLeft.canceled += instance.OnShiftLeft;
+                @arma.started += instance.OnArma;
+                @arma.performed += instance.OnArma;
+                @arma.canceled += instance.OnArma;
             }
         }
     }
@@ -549,7 +560,7 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
         void OnMoveVertical(InputAction.CallbackContext context);
         void OnMoveHorizontal(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnRun(InputAction.CallbackContext context);
         void OnShiftLeft(InputAction.CallbackContext context);
+        void OnArma(InputAction.CallbackContext context);
     }
 }
