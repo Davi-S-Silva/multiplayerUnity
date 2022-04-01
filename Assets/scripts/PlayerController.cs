@@ -9,10 +9,10 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField]
-    private float _moveSpeed, _jumpForce, _rotateForce, _verticalMove, _horizontalMove;
+    private float _moveSpeed, _jumpForce, _rotateForce, _verticalMove, _horizontalMove, _shiftLeft;
 
     [SerializeField]
-    private bool _isJump;
+    private bool _isJump, _isRunning;
 
     [SerializeField]
     private Rigidbody _rb;
@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private ActionsPlayerController _actionPlayerController;
+
+    [SerializeField]
+    private AudioSource _walkAudio;
 
 
     private void Awake()
@@ -43,6 +46,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _walkAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -50,8 +54,9 @@ public class PlayerController : MonoBehaviour
     {
         _horizontalMove = _actionPlayerController.Player.MoveHorizontal.ReadValue<float>();
         _verticalMove = _actionPlayerController.Player.MoveVertical.ReadValue<float>();
-
-
+        _isJump = _actionPlayerController.Player.jump.triggered;
+        _isRunning = _actionPlayerController.Player.run.triggered;
+        _shiftLeft = _actionPlayerController.Player.ShiftLeft.ReadValue<float>();
 
         Debug.Log("Horizontal: " + _horizontalMove);
         Debug.Log("Vertical: " + _verticalMove);
@@ -62,47 +67,52 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
 
-        
-
-        //_rb.AddForce(new Vector3(_horizontalMove * _moveSpeed, 0, _verticalMove * _moveSpeed), ForceMode.Force);
-
-
-
-        if (_verticalMove > 0)
+        if (_shiftLeft!=0 && _verticalMove!=0)
         {
-            _animController.applyRootMotion = true;
-            _animController.SetBool("walk_with_briefcase", true);
-        }else
-        {
-            _animController.applyRootMotion = true;
-            _animController.SetBool("WalkingBackwards", true);
-        }
-
-
-        if (_horizontalMove > 0)
-        {
-            _animController.applyRootMotion = true;
-            _animController.SetBool("TurnRight", true);
+            _animController.SetBool("run", true);
         }
         else
         {
-            _animController.applyRootMotion = true;
-            _animController.SetBool("TurnLeft", true);
+            _animController.SetBool("run", false);
         }
+
+
+        if (_isRunning)
+        {
+           
+        }
+
+        if (_isJump)
+        {
+            _animController.SetBool("jump", true);
+        }
+        else
+        {
+            _animController.SetBool("jump", false);
+        }
+
+        if (_verticalMove > 0)
+        {
+            _animController.SetBool("walk_with_briefcase", true);
+            _walkAudio.Play();
+        }
+        else 
+        {
+            _animController.SetBool("WalkingBackwards", true);
+            _walkAudio.Play();
+        }
+
         if (_verticalMove == 0)
         {
             _animController.SetBool("walk_with_briefcase", false);
             _animController.SetBool("WalkingBackwards", false);
-            _animController.applyRootMotion = false;
+            _walkAudio.Pause();
         }
 
 
         if (_horizontalMove != 0)
         {
             transform.Rotate(new Vector3(0,_rotateForce*_horizontalMove,0),Space.World);
-          /*  _animController.SetBool("TurnRight", false);
-            _animController.SetBool("TurnLeft", false);*/
-            // _animController.applyRootMotion = false;
         }
 
 

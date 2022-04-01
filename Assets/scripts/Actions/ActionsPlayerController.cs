@@ -44,6 +44,33 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""jump"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""ab165bae-40b6-4341-a650-8e236131bcfb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""run"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f48206a-6b9a-4691-bc51-0ceaa26dcffc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShiftLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""34c47d30-7128-4a3e-9fc5-6383f65fa066"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -310,16 +337,75 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                     ""action"": ""MoveHorizontal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f1d1f9c-0c8f-4b6b-82e2-6288cd2f81cf"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0c8b6eb-d3bd-4592-bf32-a50257951b29"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShiftLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a31567c2-faa1-487d-960a-c3b53ee32803"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShiftLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""joystick"",
+            ""bindingGroup"": ""joystick"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Joystick>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_MoveVertical = m_Player.FindAction("MoveVertical", throwIfNotFound: true);
         m_Player_MoveHorizontal = m_Player.FindAction("MoveHorizontal", throwIfNotFound: true);
+        m_Player_jump = m_Player.FindAction("jump", throwIfNotFound: true);
+        m_Player_run = m_Player.FindAction("run", throwIfNotFound: true);
+        m_Player_ShiftLeft = m_Player.FindAction("ShiftLeft", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -381,12 +467,18 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_MoveVertical;
     private readonly InputAction m_Player_MoveHorizontal;
+    private readonly InputAction m_Player_jump;
+    private readonly InputAction m_Player_run;
+    private readonly InputAction m_Player_ShiftLeft;
     public struct PlayerActions
     {
         private @ActionsPlayerController m_Wrapper;
         public PlayerActions(@ActionsPlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveVertical => m_Wrapper.m_Player_MoveVertical;
         public InputAction @MoveHorizontal => m_Wrapper.m_Player_MoveHorizontal;
+        public InputAction @jump => m_Wrapper.m_Player_jump;
+        public InputAction @run => m_Wrapper.m_Player_run;
+        public InputAction @ShiftLeft => m_Wrapper.m_Player_ShiftLeft;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -402,6 +494,15 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                 @MoveHorizontal.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveHorizontal;
                 @MoveHorizontal.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveHorizontal;
                 @MoveHorizontal.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveHorizontal;
+                @jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
+                @run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
+                @run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
+                @ShiftLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShiftLeft;
+                @ShiftLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShiftLeft;
+                @ShiftLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShiftLeft;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -412,13 +513,43 @@ public partial class @ActionsPlayerController : IInputActionCollection2, IDispos
                 @MoveHorizontal.started += instance.OnMoveHorizontal;
                 @MoveHorizontal.performed += instance.OnMoveHorizontal;
                 @MoveHorizontal.canceled += instance.OnMoveHorizontal;
+                @jump.started += instance.OnJump;
+                @jump.performed += instance.OnJump;
+                @jump.canceled += instance.OnJump;
+                @run.started += instance.OnRun;
+                @run.performed += instance.OnRun;
+                @run.canceled += instance.OnRun;
+                @ShiftLeft.started += instance.OnShiftLeft;
+                @ShiftLeft.performed += instance.OnShiftLeft;
+                @ShiftLeft.canceled += instance.OnShiftLeft;
             }
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
+    private int m_joystickSchemeIndex = -1;
+    public InputControlScheme joystickScheme
+    {
+        get
+        {
+            if (m_joystickSchemeIndex == -1) m_joystickSchemeIndex = asset.FindControlSchemeIndex("joystick");
+            return asset.controlSchemes[m_joystickSchemeIndex];
+        }
+    }
     public interface IPlayerActions
     {
         void OnMoveVertical(InputAction.CallbackContext context);
         void OnMoveHorizontal(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
+        void OnShiftLeft(InputAction.CallbackContext context);
     }
 }
